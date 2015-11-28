@@ -1,0 +1,53 @@
+$purple: #6F5499;
+
+.app-container
+{
+	margin-top: 15vh;
+}
+.center
+{
+	text-align: center;
+}
+.img-responsive .img-center {
+  margin: 0 auto;
+}
+.footer-blog
+{
+	position: absolute;
+bottom: 0px;
+}
+.right{
+	float: right;
+}
+.navbar-blue
+{
+	background-color: $purple
+}
+.navbar-link
+{
+	color: white !important;
+}
+footer
+{
+	a 
+	{
+		color: $purple;
+		&:hover 
+		{
+			color : blue;
+		}
+	}
+}
+#logo
+{
+	a 
+	{
+		&:hover
+		{
+			color: "white";
+		}
+	}
+}
+
+
+
