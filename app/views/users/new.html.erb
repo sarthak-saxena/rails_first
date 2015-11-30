@@ -1,18 +1,36 @@
-<% provide(:title , "Sign in") %>
+<% provide(:title , "Sign Up") %>
 
-<div class="jumbotron">
+<div class="jumbotron" style="text-align:center">
 	<h1 class="center">About</h1>
-	<form>
+	<%= form_for(@user) do |f| %>
+	<%= render 'layouts/errors' %>
+	<table class="col-lg-offset-4">
+	<tr>
 		<div class="form-group">
-		<label for="Email Address">Email</label>
-		<input type="text" name="email" class="form-control">
+			<td><%= f.label :name , class: "form-class" %></td>
+			<td><%= f.text_field :name , class: "form-class" %></td>
 		</div>
-		<div class="form-group">
-		<label for="Email Address">Password</label>
-		<input type="password" name="password" class="form-control">
+	</tr>
+	<tr>
+			<div class="form-group">
+			<td><%= f.label :email , class: "form-class" %></td>
+			<td><%= f.email_field :email , class: "form-class" %></td>
 		</div>
-		<div class="form-group">
-			<input type="submit" name="sub" value="submit" class="btn btn-primary form-control">
+	</tr>
+	<tr>
+			<div class="form-group">
+			<td><%= f.label :password , class: "form-class" %></td>
+			<td><%= f.password_field :password, class: "form-class" %></td>
 		</div>
-	</form>
+	</tr>
+	<tr>
+			<div class="form-group">
+			<td><%= f.label :password_confirmation , class: "form-class" %></td>
+			<td><%= f.password_field :password_confirmation , class: "form-class" %></td>
+		</div>
+	</tr>
+	</table>
+	<br>
+	<%= f.submit "Sign Up" , class: "btn btn-primary signup" %>
+	<% end %>
 </div>
