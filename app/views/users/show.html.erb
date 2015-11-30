@@ -1,0 +1,16 @@
+<div class="container">
+  <%= provide(:title , @user.name + " page") %>
+  <% flash.each do |message_type , message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+	<div class="row">
+		<div class="col-lg-2">
+			<%= gravatar_for @user %>
+		</div>
+		<div clas="col-lg-10">
+			<%= @user.name %>
+			<br>
+			<%= @user.email %>
+		</div>
+	</div>
+</div>
