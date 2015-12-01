@@ -1,0 +1,22 @@
+<%= provide(:title , "Login In") %>
+
+
+<div class="jumbotron" style="text-align:center">
+	<h1>Log In</h1>
+	<%= form_for(:session , url: login_path) do |f| %>
+		<% flash.each do |message_type , message| %>
+			<div class="alert alert-<%= message_type %>"><%= message %></div>
+		<% end %>
+		<div class="form-group">
+			<%= f.label :email , class: 'form-class' %>
+			<%= f.email_field :email , class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<%= f.label :password , class: 'form-class' %>
+			<%= f.password_field :password , class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<%= f.submit 'Submit' , class: 'btn btn-primary' %>
+		</div>
+	<% end %>
+</div>

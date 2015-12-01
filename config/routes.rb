@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  get 'login' => 'users#new'
-  
+  get 'sessions/new'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
 
+  get 'users/new'
+  
   root 'static_pages#home'
   home_path = '/home'
   get 'home' => 'static_pages#home'
