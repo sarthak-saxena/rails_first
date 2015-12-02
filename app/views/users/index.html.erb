@@ -1,0 +1,22 @@
+<% provide(:title , "All Users") %>
+<div class="jumbotron">
+	<h1>USERS</h1>
+	<% flash.each do |message_type, message| %>
+	<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+	<%= will_paginate %>
+	<% @users.each do |user| %>
+		<div class="row row-gap">
+			<%= gravatar_for user %>
+			<%= link_to user.name , user %>
+			<%= user.email %>
+			 
+			<% if current_user.admin? %>
+			<%= link_to 'Edit' , edit_user_path(user) %>
+			<%= link_to 'Delete' , user , method: :delete , data: {confirm: "are you sure?"} %>
+			<% end %>
+			
+ 		</div>
+	<% end %>
+	<%= will_paginate %>
+</div>
