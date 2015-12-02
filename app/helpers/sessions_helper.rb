@@ -14,4 +14,12 @@ module SessionsHelper
 		session.delete(:user_id)
 		@current_user = nil
 	end
+	#stores url tryin to be accessed
+	def store_location
+		session[:store_loc] = request.url
+	end
+	def redirect_back_url(default)
+		redirect_to(session[:store_loc] || default)
+		session.delete(:store_loc)
+	end
 end

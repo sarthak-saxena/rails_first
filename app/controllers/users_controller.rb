@@ -1,12 +1,21 @@
 class UsersController < ApplicationController
   before_action :logged_in_user , only: [:edit , :update]
   before_action :correct_user , only: [:edit, :update]
+  before_action :admin_user , only: [:destroy ,:edit]
 
+  def index
+    @users = User.paginate(page: params[:page] , per_page: 3)
+  end
   def new
   	@user = User.new
   end
   def show
   	@user = User.find(params[:id])
+  end
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "user deleted"
+    redirect_to users_path
   end
   def user_params
   	params.require(:user).permit(:name , :email , :password , :password_confirmation)
@@ -39,6 +48,7 @@ class UsersController < ApplicationController
 
   def logged_in_user
     if !logged_in?
+      store_location
       flash[:danger] = "Please Login"
       redirect_to login_path
     end
@@ -47,6 +57,12 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     if !(@user==current_user)
+      redirect_to root_path
+    end
+  end
+
+  def admin_user
+    if !current_user.admin?
       redirect_to root_path
     end
   end

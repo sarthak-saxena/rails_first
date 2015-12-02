@@ -19,6 +19,7 @@
 	       	<li><%= link_to "Sign Up" ,"users/new" , class: "navbar-link" %></li>
 
 	       	<% if logged_in? %>
+	       	<li><%= link_to 'All Users' , '/users' ,class: "navbar-link" %></li>
 	       	<li class="dropdown">
 	       		<a href ="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Account</a>
 	       		<ul class="dropdown-menu">
