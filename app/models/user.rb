@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+	has_many :micropost
+	attr_accessor :remember_token, :activation_token
 	before_save {self.email = email.downcase}
+	before_create :create_activation_digest
 	validates(:name , presence: true , length: {maximum: 50})
 	validates(:email , presence: true , length: {maximum: 244} , format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i} , uniqueness: {case_sensitive: false})
 	validates(:password , length: {minimum: 6})
@@ -20,5 +23,14 @@ class User < ActiveRecord::Base
 	  def remember
 	   self.remember_token = User.new_token
 	   update_attribute(:remember_digest , User.digest(remember_token))  
+	  end
+
+	  
+	  def downcase_email
+	  	self.email = email.downcase
+	  end
+	  def create_activation_digest
+	  	self.activation_token = User.new_token
+	  	self.activation_digest = User.digest(activation_token)
 	  end
 end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user , only: [:edit , :update]
   before_action :correct_user , only: [:edit, :update]
-  before_action :admin_user , only: [:destroy ,:edit]
+  before_action :admin_user , only: [:destroy ,:edit , :update]
 
   def index
     @users = User.paginate(page: params[:page] , per_page: 3)
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
   def show
   	@user = User.find(params[:id])
+    @micropost = Micropost.new
   end
   def destroy
     User.find(params[:id]).destroy
@@ -21,11 +22,15 @@ class UsersController < ApplicationController
   	params.require(:user).permit(:name , :email , :password , :password_confirmation)
   end
   def create
+   
   	@user = User.new(user_params)
   	if @user.save
-      log_in @user
-      redirect_to @user
-      flash[:success] = "Welcome  " + @user.name
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."     
+      redirect_to root_path
+      #log_in @user
+      #redirect_to @user
+      #flash[:success] = "Welcome  " + @user.name      
   	else
   		render 'new'
       flash[:danger] = "Failed to Sign Up"

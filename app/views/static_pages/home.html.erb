@@ -1,6 +1,9 @@
 <% provide(:title , "Home") %>
 <div class='jumbotron' style="text-align:center">
 	<%= link_to image_tag("sarthak.png"), "http://rubyrsils.org" , target: "_blank" , class: "img-responsive img-center"%>
+<% flash.each do |message_type , message| %>
+	<div class="alert alert-<%=message_type%>"><%= message %></div>
+<% end %>
 <h1 class="center">Home</h1>
 <p class="center">Home Page</p>
 <%= link_to "Sign Up" , "" , class: "btn btn-primary btn-lg center" %>

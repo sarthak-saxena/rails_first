@@ -12,7 +12,7 @@
 			<%= user.email %>
 			 
 			<% if current_user.admin? %>
-			<%= link_to 'Edit' , edit_user_path(user) %>
+			<%= link_to 'Edit' , edit_user_path(user) , method: :edit %>
 			<%= link_to 'Delete' , user , method: :delete , data: {confirm: "are you sure?"} %>
 			<% end %>
 			

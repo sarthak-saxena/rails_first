@@ -13,4 +13,24 @@
 			<%= @user.email %>
 		</div>
 	</div>
+	<div class="row">
+		<h1>Microposts</h1>
+		<%= form_for(@micropost) do |f| %>
+		<div class="form-group">
+			<%= f.label :content , class: "form-class" %>
+			<%= f.text_field :content , class: 'form-group' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.submit "submit" , class: "btn btn-primary" %>
+			
+		</div>
+		<% end %>
+
+	</div>
+	<div class="row">
+		<% @user.micropost.each do |micropost| %>
+		<%= micropost.content %>
+		<% end %>
+	</div>
 </div>

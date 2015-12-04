@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'fetchapi/index'
+
   get 'sessions/new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -6,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'users/new'
   get 'users/index'
-  
+  get 'microposts/new'
   root 'static_pages#home'
   home_path = '/home'
   get 'home' => 'static_pages#home'
@@ -26,7 +28,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :users
-
+  resources :account_activations , only: [:edit]
+  resources :microposts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
